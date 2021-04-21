@@ -101,8 +101,10 @@ def main(args):
                  args.workers, args.test_fea_batch)
 
     # Create model
+    #model = seTest.resnst50().cuda()
     model = resmap.create(args.arch, ibn_type=args.ibn, final_layer=args.final_layer, neck=args.neck).cuda()
     num_features = model.num_features
+    #num_features = 64
     # print(model)
     # print('\n')
     
