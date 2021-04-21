@@ -1,0 +1,21 @@
+这个是论文里的代码，在最后排序时用了TLift的技巧，更改了顺序，提高了准确率。我希望用在其他网络上。
+
+/reid/models/resmap里面使用了resnet
+我希望改成seresnet试试。
+seTest,seTest1,seTest2都是我另外加的代码。
+我修改过，main.py里的108行的代码，108行为原有的，109-111是我尝试用其他模型，加的。都报错。
+116为原有的，117是我加的。其他无任何改动，
+运行110行生成模型时，错误一直是
+  raise ValueError('expected 4D input (got {}D input)'.format(input.dim()))
+ValueError: expected 4D input (got 2D input)
+
+还有一个问题师兄，resmap里 neck为128，结合第60行：
+ if neck > 0:
+            self.neck_conv = nn.Conv2d(out_planes, neck, kernel_size=3, padding=1, bias=False)
+            out_planes = neck
+            self.neck_bn = nn.BatchNorm2d(out_planes)
+
+        self.num_features = out_planes
+为什么这里的neck变成了64
+
+目前我的想法就是，tlift用在其他模型试一试，还有用双线性卷积改进，再试一试能不能改进tlift函数。师兄你觉得可行吗？
